@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.entity.Customer;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.mapper.CustomerMapper;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.service.CustomerService;
@@ -32,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService{
         Customer customer = customerRepository
         .findById(customerId)
         .orElseThrow(() -> 
-            new RuntimeException("Customer not found with id: " + customerId));
+            new ResourceNotFoundException("Customer not found with id: " + customerId));
             
         return CustomerMapper.mapToCustomerDto(customer);
     }
@@ -42,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService{
         Customer customer = customerRepository
         .findById(customerId)
         .orElseThrow(() -> 
-            new RuntimeException("Customer not found with id: " + customerId));
+            new ResourceNotFoundException("Customer not found with id: " + customerId));
         
         customer.setPhone(phone);
         Customer savedCustomer = customerRepository.save(customer);
@@ -60,7 +61,7 @@ public class CustomerServiceImpl implements CustomerService{
         Customer customer = customerRepository
         .findById(customerId)
         .orElseThrow(() -> 
-            new RuntimeException("Customer not found with id: " + customerId));
+            new ResourceNotFoundException("Customer not found with id: " + customerId));
         
         customerRepository.delete(customer);
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.GroceryItemDto;
 import com.example.demo.entity.GroceryItem;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.mapper.GroceryItemMapper;
 import com.example.demo.repository.GroceryRepository;
 import com.example.demo.service.GroceryItemService;
@@ -32,7 +33,7 @@ public class GroceryItemServiceImpl implements GroceryItemService{
         GroceryItem groceryItem = groceryRepository
         .findById(groceryItemId)
         .orElseThrow(() -> 
-            new RuntimeException("Grocery item not found with id: " + groceryItemId));
+            new ResourceNotFoundException("Grocery item not found with id: " + groceryItemId));
 
         return GroceryItemMapper.mapToGroceryItemDto(groceryItem);
     }
@@ -42,7 +43,7 @@ public class GroceryItemServiceImpl implements GroceryItemService{
         GroceryItem groceryItem = groceryRepository
         .findById(groceryItemId)
         .orElseThrow(() -> 
-            new RuntimeException("Grocery item not found with id: " + groceryItemId));
+            new ResourceNotFoundException("Grocery item not found with id: " + groceryItemId));
 
         groceryItem.setQuantity(quantity);
         GroceryItem savedGroceryItem = groceryRepository.save(groceryItem);
@@ -60,7 +61,7 @@ public class GroceryItemServiceImpl implements GroceryItemService{
         GroceryItem groceryItem = groceryRepository
         .findById(groceryItemId)
         .orElseThrow(() -> 
-            new RuntimeException("Grocery item not found with id: " + groceryItemId));
+            new ResourceNotFoundException("Grocery item not found with id: " + groceryItemId));
 
         groceryRepository.delete(groceryItem);
     }

@@ -18,7 +18,7 @@ import com.example.demo.dto.GroceryItemDto;
 import com.example.demo.service.GroceryItemService;
 
 @RestController
-@RequestMapping("/api/groceryItem")
+@RequestMapping("/api/groceryItems")
 public class GroceryItemController {
     
     private GroceryItemService groceryItemService;
@@ -29,23 +29,23 @@ public class GroceryItemController {
 
     // Add GroceryItem REST API
     @PostMapping
-    public ResponseEntity<GroceryItemDto> createGroceryItem(@RequestBody GroceryItemDto groceryItemDto){
+    public ResponseEntity<GroceryItemDto> addGroceryItem(@RequestBody GroceryItemDto groceryItemDto){
         return new ResponseEntity<>(groceryItemService.createGroceryItem(groceryItemDto), HttpStatus.CREATED);
     }
 
     // Get Grocery Item by Id REST API
-    @GetMapping("/{id}")
-    public ResponseEntity<GroceryItemDto> getGroceryItemById(@PathVariable Long id){
-        GroceryItemDto groceryItemDto = groceryItemService.getGroceryItemById(id);
+    @GetMapping("/{groceryItemId}")
+    public ResponseEntity<GroceryItemDto> getGroceryItemById(@PathVariable Long groceryItemId){
+        GroceryItemDto groceryItemDto = groceryItemService.getGroceryItemById(groceryItemId);
         return ResponseEntity.ok(groceryItemDto);
     }
 
     // Update Grocery Item Quantity REST API
-    @PutMapping("/{id}/updateQuantity")
-    public ResponseEntity<GroceryItemDto> updateGroceryItemQuantity(@PathVariable Long id, 
+    @PutMapping("/{groceryItemId}/updateQuantity")
+    public ResponseEntity<GroceryItemDto> updateGroceryItemQuantity(@PathVariable Long groceryItemId, 
         @RequestBody Map<String, Long> request){
         Long quantity = request.get("quantity");
-        GroceryItemDto groceryItemDto = groceryItemService.updateGroceryItemQuantity(id, quantity);
+        GroceryItemDto groceryItemDto = groceryItemService.updateGroceryItemQuantity(groceryItemId, quantity);
         return ResponseEntity.ok(groceryItemDto);
     }
 
@@ -57,9 +57,9 @@ public class GroceryItemController {
     }
 
     // Delete Grocery Item REST API
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteGroceryItem(@PathVariable Long id){
-        groceryItemService.deleteGroceryItem(id);
-        return ResponseEntity.ok("Grocery Item is deleted successfully");
+    @DeleteMapping("/{groceryItemId}")
+    public ResponseEntity<String> deleteGroceryItem(@PathVariable Long groceryItemId){
+        groceryItemService.deleteGroceryItem(groceryItemId);
+        return ResponseEntity.ok("Grocery Item is deleted successfully!");
     }
 }

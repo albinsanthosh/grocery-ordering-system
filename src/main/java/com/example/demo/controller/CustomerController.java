@@ -34,19 +34,19 @@ public class CustomerController {
     }
     
     // Get Customer REST API
-    @GetMapping("/{id}")
-    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id){
-        CustomerDto customerDto = customerService.getCustomerById(id);
+    @GetMapping("/{customerId}")
+    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long customerId){
+        CustomerDto customerDto = customerService.getCustomerById(customerId);
         return ResponseEntity.ok(customerDto);
     }
 
     // Update Customer phone REST API
-    @PutMapping("/{id}/updatePhone")
-    public ResponseEntity<CustomerDto> updateCustomerPhone(@PathVariable Long id,
+    @PutMapping("/{customerId}/updatePhone")
+    public ResponseEntity<CustomerDto> updateCustomerPhone(@PathVariable Long customerId,
         @RequestBody Map<String, String> request){
 
         String phone = request.get("phone");
-        CustomerDto customerDto = customerService.updateCustomerPhone(id, phone);
+        CustomerDto customerDto = customerService.updateCustomerPhone(customerId, phone);
         return ResponseEntity.ok(customerDto);
     } 
 
@@ -58,9 +58,9 @@ public class CustomerController {
     }
 
     // Delete Customer REST API
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCustomer(@PathVariable Long id){
-        customerService.deleteCustomer(id);
+    @DeleteMapping("/{customerId}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable Long customerId){
+        customerService.deleteCustomer(customerId);
         return ResponseEntity.ok("Customer is deleted successfully!");
     }
 }
