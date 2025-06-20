@@ -1,4 +1,6 @@
-# Functionalities implemented
+# Grocery Ordering System App
+
+## Functionalities implemented
 
 1. Customer CRUD operations  
 Create Customer, Read Customer, Update Customer Phone, Delete Customer 
@@ -11,7 +13,7 @@ Create GroceryItem, Read GroceryItem, Update GroceryItem Quantity, Delete Grocer
 3. Order CRUD operations  
 Create Order, Read Order, Update Order items, Delete Order
 
-# How to execute the application
+## How to execute the application
 
 1. Create MySQL Database and configure properties
 
